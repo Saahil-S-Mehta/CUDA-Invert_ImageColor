@@ -14,7 +14,7 @@ void Image_Inversion_CUDA(unsigned char* Input_Image, int Height, int Width, int
 	cudaMemcpy(Dev_Input_Image, Input_Image, Height * Width * Channels, cudaMemcpyHostToDevice);
 
 	dim3 Grid_Image(Width, Height);
-	Inversion_CUDA << <Grid_Image, 1 >> > (Dev_Input_Image, Channels);
+	Inversion_CUDA << <Grid_Image, 8 >> > (Dev_Input_Image, Channels);
 
 	cudaMemcpy(Input_Image, Dev_Input_Image, Height * Width * Channels, cudaMemcpyDeviceToHost);
 
